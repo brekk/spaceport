@@ -1,0 +1,80 @@
+---
+import blem from "blem";
+import type { RawPackage, PackageKind } from "@types/Package.ts";
+import Package from "@components/PackageSummary.astro";
+
+interface Props {
+  // togglePublished: () => void;
+  // toggleOfficial: () => void;
+  packages: RawPackage[];
+}
+const { packages = [] } = Astro.props;
+const bem = blem("Packages");
+---
+
+<div className={bem("")}>
+  {
+    packages.length > 0 ? (
+      <ul className={bem("package-listing")}>
+        {packages.map((raw) => (
+          <li
+            key={raw.name}
+            className={bem("list-item", [
+              `${!raw.published ? "un" : ""}published`,
+              `${!raw.official ? "un" : ""}official`,
+            ])}
+          >
+            <Package
+              {...raw}
+              kind={raw.kind as PackageKind}
+              togglePublished={togglePublished}
+              toggleOfficial={toggleOfficial}
+            />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div className={bem("no-packages")}>
+        No matching packages found.
+        <br />
+        Try changing your search parameters.
+      </div>
+    )
+  }
+</div>
+
+<style lang="stylus">
+.Packages {
+  width: 100%;
+  min-height: 80vh;
+  height: 100%;
+  &__no-packages {
+    font-size: 0.825rem;
+    margin: 4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-weight: bold;
+    color: var(--color-fg);
+    text-shadow:
+      0 0 4px rgba(200, 175, 0, 0.8),
+      0 0 10px rgba(255, 200, 0, 0.8);
+  }
+  &__package-listing {
+    list-style: none;
+    width: 100%;
+    margin-top:2rem;
+    padding: 0;
+  }
+  &__list-item {
+    list-style: none;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-white50);
+    border-radius: 0.5rem;
+    
+  }
+}
+</style>

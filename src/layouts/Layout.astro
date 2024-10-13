@@ -27,12 +27,16 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <slot name="nav" />
+    <main>
+      <slot name="main" />
+    </main>
   </body>
 </html>
 <style is:global>
   :root {
     --color-bg: #180e1c;
+    --color-bg2: #0e0220;
     --color-fg: #dee8f4;
     --color-yellow: #eac968;
     --color-blue: #a9b3ec;
@@ -95,7 +99,7 @@ const { title } = Astro.props;
 
   html,
   body {
-    @include fontFira;
+    font-family: "Fira Code", monospace;
     color: var(--color-fg);
     font-size: 16px;
     padding: 0;
@@ -112,10 +116,11 @@ const { title } = Astro.props;
   }
 
   html {
-    background: linear-gradient(183deg, #180e1c, #0e0220);
+    background: linear-gradient(183deg, var(--color-bg), var(--color-bg2));
   }
   body {
     background-image: url(../assets/noise.svg);
     background-repeat: repeat;
+    height: 100vh;
   }
 </style>

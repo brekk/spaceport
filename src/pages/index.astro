@@ -1,12 +1,12 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Logo from "@components/Logo.astro";
+import Nav from "@components/Nav.astro";
+import Packages from "@components/Packages.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>
-    <Logo animate/>
-  </main>
+<Layout title="A language designed to delight">
+  <Nav slot="nav" title="Packages" />
+  <Packages slot="main" />
 </Layout>
 
 <style></style>

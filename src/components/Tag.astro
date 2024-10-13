@@ -1,0 +1,13 @@
+---
+import blem from "blem";
+interface Props {
+  name: string;
+}
+// excluding onClick for now
+const { name } = Astro.props;
+const bem = blem("tag");
+---
+
+<div client:load className={bem("", [name.toLowerCase()])}>
+  {name}
+</div>
