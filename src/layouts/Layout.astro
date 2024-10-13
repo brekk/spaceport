@@ -1,6 +1,9 @@
 ---
+import "@fontsource/antonio";
+import "@fontsource/fira-code";
+import firaWoff2 from "@fontsource/fira-code/files/fira-code-latin-400-normal.woff2?url";
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -8,43 +11,111 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={firaWoff2}
+      crossorigin="anonymous"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --color-bg: #180e1c;
+    --color-fg: #dee8f4;
+    --color-yellow: #eac968;
+    --color-blue: #a9b3ec;
+    --color-pink: #ff6f97;
+    --color-purple: #a571e3;
+    --color-green: #9ccfd8;
+    --color-orange: #ea9a97;
+    --color-white50: rgba(255, 255, 255, 0.5);
+  }
+
+  @keyframes hum {
+    0%,
+    100% {
+      fill: var(--color-yellow);
+    }
+    25% {
+      fill: var(--color-pink);
+    }
+    50% {
+      fill: var(--color-purple);
+    }
+    75% {
+      fill: var(--color-blue);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Antonio", sans-serif;
+    font-weight: 100;
+  }
+  h1 {
+    font-size: 3.6rem;
+    line-height: 3.6rem;
+  }
+  h2 {
+    font-size: 3.4rem;
+    line-height: 3.4rem;
+  }
+  h3 {
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+  }
+  h4 {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+  h5 {
+    font-size: 2.8rem;
+    line-height: 2.8rem;
+  }
+  h6 {
+    font-size: 2.6rem;
+    line-height: 2.6rem;
+  }
+
+  html,
+  body {
+    @include fontFira;
+    color: var(--color-fg);
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+    a {
+      transition: color 0.9s ease-out;
+      color: var(--color-purple);
+      text-decoration: none;
+      &:hover {
+        color: var(--color-yellow);
+      }
+    }
+  }
+
+  html {
+    background: linear-gradient(183deg, #180e1c, #0e0220);
+  }
+  body {
+    background-image: url(../assets/noise.svg);
+    background-repeat: repeat;
+  }
 </style>
