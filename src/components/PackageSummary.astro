@@ -1,8 +1,9 @@
 ---
 import blem from "blem";
-import RepoGithub from "@assets/icon-github.svg";
-import RepoGitlab from "@assets/icon-gitlab.svg";
-import RepoIcon from "@assets/icon-repo.svg";
+import RepoGithub from "@icons/Github.astro";
+import RepoGitlab from "@icons/Gitlab.astro";
+import RepoIcon from "@icons/Repo.astro";
+import Tag from "@components/Tag.astro";
 /*
 import type {
   AugmentedPackage as AugmentedPackageProps,
@@ -42,7 +43,7 @@ const bem = blem("Package");
   </div>
   <footer className={bem("footer")}>
     <div className={bem("authorbox")}>
-      <Link href={`/author/${author}`} className={bem("link", ["author"])}>
+      <a href={`/author/${author}`} className={bem("link", ["author"])}>
         <img
           src={`https://github.com/${author}.png?size=24`}
           className={bem("avatar")}
@@ -51,7 +52,7 @@ const bem = blem("Package");
           height={24}
         />
         <span className={bem("author-text")}>{author}</span>
-      </Link>
+      </a>
     </div>
     <div className={bem("tagbox")}>
       {official ? <Tag name="Official" /> : null}

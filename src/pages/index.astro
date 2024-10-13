@@ -2,11 +2,12 @@
 import Layout from "@layouts/Layout.astro";
 import Nav from "@components/Nav.astro";
 import Packages from "@components/Packages.astro";
+import PACKAGE_DATA from "@data/packages.json";
 ---
 
 <Layout title="A language designed to delight">
   <Nav slot="nav" title="Packages" />
-  <Packages slot="main" />
+  <Packages slot="main" packages={PACKAGE_DATA} />
 </Layout>
 
 <style></style>
