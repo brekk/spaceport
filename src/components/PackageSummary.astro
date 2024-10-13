@@ -27,34 +27,34 @@ const [repoicon, Icon] = repo.includes("github")
     ? ["gitlab", RepoGitlab]
     : ["repo", RepoIcon];
 
-const bem = blem("Package");
+const bem = blem("PackageSummary");
 ---
 
-<div className={bem("")}>
-  <header className={bem("header")}>
-    <strong className={bem("name")}>{name}</strong>
-    {version ? <em className={bem("version")}>v{version}</em> : null}
+<div class={bem("")}>
+  <header class={bem("header")}>
+    <strong class={bem("name")}>{name}</strong>
+    {version ? <em class={bem("version")}>v{version}</em> : null}
   </header>
-  <div className={bem("content")}>
-    {description ? <p className={bem("description")}>{description}</p> : null}
-    <a href={repo} className={bem("link", ["repo"])}>
-      <Icon className={bem("repo", [repoicon])} />
+  <div class={bem("content")}>
+    {description ? <p class={bem("description")}>{description}</p> : null}
+    <a href={repo} class={bem("link", ["repo"])}>
+      <Icon class={bem("repo", [repoicon])} />
     </a>
   </div>
-  <footer className={bem("footer")}>
-    <div className={bem("authorbox")}>
-      <a href={`/author/${author}`} className={bem("link", ["author"])}>
+  <footer class={bem("footer")}>
+    <div class={bem("authorbox")}>
+      <a href={`/author/${author}`} class={bem("link", ["author"])}>
         <img
           src={`https://github.com/${author}.png?size=24`}
-          className={bem("avatar")}
+          class={bem("avatar")}
           alt={author}
           width={24}
           height={24}
         />
-        <span className={bem("author-text")}>{author}</span>
+        <span class={bem("author-text")}>{author}</span>
       </a>
     </div>
-    <div className={bem("tagbox")}>
+    <div class={bem("tagbox")}>
       {official ? <Tag name="Official" /> : null}
       {published ? <Tag name="Published" /> : null}
     </div>
@@ -62,13 +62,15 @@ const bem = blem("Package");
 </div>
 
 <style lang="stylus">
-.Package {
+.PackageSummary {
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   position: relative;
+  fill: var(--color-fg);
+  
   &__link--repo:hover {
     svg {
       fill: var(--color-pink);
@@ -90,7 +92,11 @@ const bem = blem("Package");
       }
     }
   }
-  &__repo {
+  svg, &__repo {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     transition: fill 0.3s ease-out;
     fill: var(--color-fg);
     align-self: center;
@@ -154,27 +160,7 @@ const bem = blem("Package");
     width: 10rem;
     justify-content: flex-end;
   }
-  &__tag {
-    font-family: "Antonio", sans-serif;
-    font-size: 0.75rem;
-    cursor: pointer;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.35);
-    padding: 0.25rem 0.5rem 0.35rem;
-    background-color: var(--color-fg);
-    color: var(--color-bg);
-    border-radius: 0.5rem;
-    margin-left: 0.5rem;
-    transition: background 0.3s ease-out;
-    &--published {
-      background-color: var(--color-purple);
-    }
-    &--official {
-      background-color: var(--color-yellow);
-    }
-    &:hover {
-      background-color: var(--color-pink);
-    }
-  }
+  
 }
 
 </style>

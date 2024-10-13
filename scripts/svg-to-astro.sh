@@ -7,10 +7,10 @@ echo "🗜️ Optimizing SVG..."
 svgo $file
 
 echo "🧢 Adding frontmatter..."
-echo -e "---\n\n---\n" > $newfile
+echo -e "---\ninterface Props {\n  class?: string\n}\nconst { class: _class = \"\" } = Astro.props\n---\n" > $newfile
 
 echo "🫀 Adding SVG..."
-cat $file | snang -P "split('><') | join('>\n<')" >> $newfile
+cat $file | snang -P "replace('xmlns', 'class={_class} xmlns') | split('><') | join('>\n<')" >> $newfile
 
 echo "🧹 Prettifying..."
 prettier --plugin=prettier-plugin-astro $newfile --write
