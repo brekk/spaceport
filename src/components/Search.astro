@@ -1,0 +1,320 @@
+---
+import blem from "blem";
+import Telescope from "@icons/Telescope.astro";
+
+interface Props {
+  official: boolean;
+  published: boolean;
+  search: string;
+  packageKinds: string[];
+}
+
+const PACKAGE_KINDS = ["All", "Library", "Tool", "Fun", "Plugin"];
+const {
+  official,
+  packageKinds = PACKAGE_KINDS,
+  published,
+  search = "",
+} = Astro.props;
+const bem = blem("Searchbar");
+/*
+onChange={(e) => {
+  e.preventDefault();
+  setSearch(e.target.value);
+}}
+onChange={toggleOfficial}
+onChange={(e) => setKind(parseInt(e.target.value))}
+onChange={togglePublished}
+*/
+---
+
+<div className={bem("")}>
+  <menu className={bem("menu")}>
+    <div
+      className={bem("search-wrapper", [
+        search == "" ? "waiting" : "searching",
+      ])}
+    >
+      <div className={bem("search-icon-wrapper")}>
+        <Telescope className={bem("search-icon")} alt="Search" />
+      </div>
+      <input
+        type="text"
+        className={bem("search")}
+        placeholder="Search Packages"
+        id="search-field"
+      />
+    </div>
+    <div className={bem("filters")}>
+      <label htmlFor="kind" className={bem("label", ["select", "kind"])}>
+        <span className={bem("label-text")}>Kind</span>
+        <select
+          id="kind"
+          name="kind"
+          className={bem("select", ["kind"])}
+          defaultValue={0}
+        >
+          {
+            packageKinds.map((k, i) => (
+              <option value={i} key={k + "-" + i}>
+                {k}
+              </option>
+            ))
+          }
+        </select>
+      </label>
+      <label
+        htmlFor="official"
+        className={bem("label", ["checkbox", "official"])}
+      >
+        <input
+          checked={official}
+          className={bem("input", ["checkbox", "official"])}
+          type="checkbox"
+          name="official"
+          id="official"
+        />
+        <span className={bem("label-text")}>Official</span>
+      </label>
+      <label
+        htmlFor="published"
+        className={bem("label", ["checkbox", "published"])}
+      >
+        <input
+          checked={published}
+          className={bem("input", ["checkbox", "published"])}
+          type="checkbox"
+          name="published"
+          id="published"
+        />
+        <span className={bem("label-text")}>Published</span>
+      </label>
+    </div>
+  </menu>
+</div>
+
+<style>
+  .Searchbar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .Searchbar__title {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 2rem;
+    /*@media screen and (min-width: $mq-1) {*/
+    /*  width: 30%;*/
+    /*  margin-bottom: 0;*/
+    /*}*/
+  }
+  .Searchbar__menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /*@media screen and (min-width: $mq-1) {*/
+    /*  width: 65%;*/
+    /*  justify-content: flex-end;*/
+    /*}*/
+  }
+  .Searchbar__label--select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 35%;
+    margin: 0;
+    padding: 0;
+  }
+  .Searchbar__label--select .Searchbar__label-text {
+    margin-right: 0.5rem;
+  }
+  .Searchbar__select {
+    font-family: "Fira Code", monospace;
+    width: 100%;
+  }
+  .Searchbar__select option {
+    font-family: "Fira Code", monospace;
+  }
+  .Searchbar__filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*@media screen and (min-width: $mq-1) {*/
+    /*  justify-self: flex-end;*/
+    /*}*/
+  }
+  input[type="checkbox"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: black;
+    margin: 0;
+    color: var(--color-bg);
+    border: 1px solid var(--color-white50);
+    border-radius: 100%;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.5rem;
+    position: relative;
+  }
+  input[type="checkbox"]::before {
+    position: absolute;
+    content: "";
+    -webkit-mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
+    mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: var(--color-bg);
+    width: 1.125rem;
+    height: 1.125rem;
+    left: -0.25rem;
+    top: -0.25rem;
+    transform: rotate(360deg) scale(0.01);
+    transition:
+      transform 0.3s ease-out,
+      background 0.3s ease-out;
+  }
+  input[type="checkbox"]:checked::before {
+    transform: rotate(0deg) scale(1);
+    background-color: var(--color-fg);
+  }
+
+  .Searchbar__input--text {
+    padding: 0.5rem;
+    border: 1px solid var(--color-white50);
+    color: var(--color-fg);
+    border-radius: 4rem;
+    background-color: black;
+  }
+  .Searchbar__input--text:focus {
+    outline: 1px solid var(--color-yellow);
+  }
+  .Searchbar__input--checkbox {
+    margin: 0;
+    padding: 0;
+    margin-top: 0.1rem;
+    margin-right: 0.5rem;
+  }
+
+  .Searchbar__search-wrapper {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--color-white50);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0 0 white;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+    transition:
+      background 0.3s ease-out,
+      width 0.3s 0.3s ease-out,
+      filter 0.3s ease-out,
+      box-shadow 0.3s ease-out,
+      fill 0.3s ease-out,
+      border 0.3s ease-out;
+    cursor: text;
+    width: 100%;
+    z-index: 10;
+
+    fill: var(--color-fg);
+  }
+  .Searchbar__search-wrapper:hover {
+    border: 1px solid var(--color-yellow);
+  }
+  .Searchbar__search-wrapper:focus-within,
+  .Searchbar__search-wrapper--searching {
+    box-shadow: 0 0 8px white;
+    background-color: white;
+    z-index: 10;
+    fill: var(--color-bg);
+  }
+
+  .Searchbar__search-icon-wrapper {
+    pointer-events: none;
+    position: absolute;
+    width: 1rem;
+    top: 0.35rem;
+    left: 0.45rem;
+  }
+  .Searchbar__search-icon {
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    filter: invert(100%);
+  }
+  .Searchbar__search {
+    font-family: "Fira Code", monospace;
+    width: 100%;
+    height: calc(2rem - 2px);
+    padding-left: 1.75rem;
+    transition:
+      color 0.3s ease-out,
+      width 0.3s ease-out,
+      box-shadow 0.3s 0.3s ease-out,
+      background 0.3s 0.6s ease-out;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--color-fg);
+  }
+  .Searchbar__search:placeholder-shown {
+    color: var(--color-white50);
+  }
+  .Searchbar__search:focus,
+  .Searchbar__search:active {
+    color: var(--color-bg);
+    cursor: text;
+    outline: 1px solid var(--color-yellow);
+  }
+  .Searchbar__label-text {
+    transition: color 0.3s ease-in;
+    color: var(--color-fg);
+  }
+  .Searchbar__label {
+    font-family: "Antonio", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    max-width: 6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    margin: 0.25rem 0;
+    margin-right: 0.75rem;
+  }
+  .Searchbar__label:last-of-type {
+    margin-right: 0;
+  }
+  .Searchbar__label--kind {
+    width: 60%;
+    min-width: 60%;
+  }
+  .Searchbar__label--official
+    input[type="checkbox"]:checked
+    + .Searchbar__label-text {
+    color: var(--color-yellow);
+  }
+  .Searchbar__label--published
+    input[type="checkbox"]:checked
+    + .Searchbar__label-text {
+    color: var(--color-purple);
+  }
+</style>

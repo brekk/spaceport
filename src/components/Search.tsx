@@ -1,6 +1,6 @@
 import blem from "blem";
-import "@/components/search/style.scss";
-import Telescope from "@/assets/icon-telescope.svg";
+import React from "react";
+import Telescope from "@assets/icon-telescope.svg";
 
 interface SearchbarProps {
   toggleOfficial: () => void;
@@ -12,10 +12,12 @@ interface SearchbarProps {
   setKind: (x: number) => void;
   packageKinds: string[];
 }
+const PACKAGE_KINDS = ["All", "Library", "Tool", "Fun", "Plugin"];
+
 
 export const Searchbar = ({
   official,
-  packageKinds,
+  packageKinds = PACKAGE_KINDS,
   published,
   search,
   setKind,
@@ -33,7 +35,7 @@ export const Searchbar = ({
           ])}
         >
           <div className={bem("search-icon-wrapper")}>
-            <Telescope className={bem("search-icon")} alt="Search" />
+            {/*<Telescope className={bem("search-icon")} alt="Search" />*/}
           </div>
           <input
             type="text"

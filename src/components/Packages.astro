@@ -2,6 +2,8 @@
 import blem from "blem";
 import type { RawPackage, PackageKind } from "@types/Package.ts";
 import Package from "@components/PackageSummary.astro";
+// import Search from "@components/Search.tsx";
+import Search from "@components/Search.astro";
 
 interface Props {
   // togglePublished: () => void;
@@ -17,6 +19,7 @@ toggleOfficial={toggleOfficial}
 ---
 
 <div className={bem("")}>
+  <Search />
   {
     packages.length > 0 ? (
       <ul className={bem("package-listing")}>
