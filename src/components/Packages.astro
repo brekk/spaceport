@@ -42,12 +42,13 @@ toggleOfficial={toggleOfficial}
   }
 </div>
 
-<style lang="stylus">
-.Packages {
-  width: 100%;
-  min-height: 80vh;
-  height: 100%;
-  &__no-packages {
+<style>
+  .Packages {
+    width: 100%;
+    min-height: 80vh;
+    height: 100%;
+  }
+  .Packages__no-packages {
     font-size: 0.825rem;
     margin: 4rem;
     text-align: center;
@@ -62,19 +63,17 @@ toggleOfficial={toggleOfficial}
       0 0 4px rgba(200, 175, 0, 0.8),
       0 0 10px rgba(255, 200, 0, 0.8);
   }
-  &__package-listing {
+  .Packages__package-listing {
     list-style: none;
     width: 100%;
-    margin-top:2rem;
+    margin-top: 2rem;
     padding: 0;
   }
-  &__list-item {
+  .Packages__list-item {
     list-style: none;
     margin-bottom: 1rem;
     width: calc(100% - 3px);
     border: 1px solid var(--color-white50);
     border-radius: 0.5rem;
-    
   }
-}
 </style>

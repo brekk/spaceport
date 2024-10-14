@@ -20,28 +20,28 @@ const { size = "medium", animate } = Astro.props;
   </path>
 </svg>
 
-<style lang="stylus">
+<style>
   .logo {
     fill: var(--color-fg);
     margin: 0;
     padding: 0;
     padding-top: 0.25rem;
-    &--animated {
-      animation: 10s infinite hum ease-in;
-    }
-    &--large {
-      width: 35.625rem;
-      max-width: 35.625rem;
-      height: 6rem;
-    }
-    &--medium {
-      width: 25rem;
-      max-width: 25rem;
-      height: 4.375rem;
-    }
-    &--small {
-      width: 10rem;
-      max-width: 10rem;
-    }
+  }
+  .logo--animated {
+    animation: 10s infinite hum ease-in;
+  }
+  .logo--large {
+    width: 35.625rem;
+    max-width: 35.625rem;
+    height: 6rem;
+  }
+  .logo--medium {
+    width: 25rem;
+    max-width: 25rem;
+    height: 4.375rem;
+  }
+  .logo--small {
+    width: 10rem;
+    max-width: 10rem;
   }
 </style>
