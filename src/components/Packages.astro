@@ -2,24 +2,17 @@
 import blem from "blem";
 import type { RawPackage, PackageKind } from "@types/Package.ts";
 import Package from "@components/PackageSummary.astro";
-// import Search from "@components/Search.tsx";
-import Search from "@components/Search.astro";
+import Searchbar from "@components/Searchbar.astro";
 
 interface Props {
-  // togglePublished: () => void;
-  // toggleOfficial: () => void;
   packages: RawPackage[];
 }
 const { packages = [] } = Astro.props;
 const bem = blem("Packages");
-/*
-togglePublished={togglePublished}
-toggleOfficial={toggleOfficial}
-*/
 ---
 
 <div className={bem("")}>
-  <Search />
+  <Searchbar />
   {
     packages.length > 0 ? (
       <ul className={bem("package-listing")}>
