@@ -1,5 +1,6 @@
 ---
 import blem from "blem";
+import Search from "@components/Search.astro";
 import Telescope from "@icons/Telescope.astro";
 
 interface Props {
@@ -17,34 +18,13 @@ const {
   search = "",
 } = Astro.props;
 const bem = blem("Searchbar");
-/*
-onChange={(e) => {
-  e.preventDefault();
-  setSearch(e.target.value);
-}}
-onChange={toggleOfficial}
-onChange={(e) => setKind(parseInt(e.target.value))}
-onChange={togglePublished}
-*/
 ---
 
 <div className={bem("")}>
   <menu className={bem("menu")}>
-    <div
-      className={bem("search-wrapper", [
-        search == "" ? "waiting" : "searching",
-      ])}
-    >
-      <div className={bem("search-icon-wrapper")}>
-        <Telescope className={bem("search-icon")} alt="Search" />
-      </div>
-      <input
-        type="text"
-        className={bem("search")}
-        placeholder="Search Packages"
-        id="search-field"
-      />
-    </div>
+    <Search placeholder="Search packages">
+      <Telescope className={bem("search-icon")} alt="Search" slot="icon" />
+    </Search>
     <div className={bem("filters")}>
       <label htmlFor="kind" className={bem("label", ["select", "kind"])}>
         <span className={bem("label-text")}>Kind</span>
@@ -211,78 +191,6 @@ onChange={togglePublished}
     margin-right: 0.5rem;
   }
 
-  .Searchbar__search-wrapper {
-    position: relative;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid var(--color-white50);
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 0 0 white;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 0.5rem;
-    transition:
-      background 0.3s ease-out,
-      width 0.3s 0.3s ease-out,
-      filter 0.3s ease-out,
-      box-shadow 0.3s ease-out,
-      fill 0.3s ease-out,
-      border 0.3s ease-out;
-    cursor: text;
-    width: 100%;
-    z-index: 10;
-
-    fill: var(--color-fg);
-  }
-  .Searchbar__search-wrapper:hover {
-    border: 1px solid var(--color-yellow);
-  }
-  .Searchbar__search-wrapper:focus-within,
-  .Searchbar__search-wrapper--searching {
-    box-shadow: 0 0 8px white;
-    background-color: white;
-    z-index: 10;
-    fill: var(--color-bg);
-  }
-
-  .Searchbar__search-icon-wrapper {
-    pointer-events: none;
-    position: absolute;
-    width: 1rem;
-    top: 0.35rem;
-    left: 0.45rem;
-  }
-  .Searchbar__search-icon {
-    position: relative;
-    width: 1rem;
-    height: 1rem;
-    filter: invert(100%);
-  }
-  .Searchbar__search {
-    font-family: "Fira Code", monospace;
-    width: 100%;
-    height: calc(2rem - 2px);
-    padding-left: 1.75rem;
-    transition:
-      color 0.3s ease-out,
-      width 0.3s ease-out,
-      box-shadow 0.3s 0.3s ease-out,
-      background 0.3s 0.6s ease-out;
-    background-color: transparent;
-    border: 1px solid transparent;
-    color: var(--color-fg);
-  }
-  .Searchbar__search:placeholder-shown {
-    color: var(--color-white50);
-  }
-  .Searchbar__search:focus,
-  .Searchbar__search:active {
-    color: var(--color-bg);
-    cursor: text;
-    outline: 1px solid var(--color-yellow);
-  }
   .Searchbar__label-text {
     transition: color 0.3s ease-in;
     color: var(--color-fg);
