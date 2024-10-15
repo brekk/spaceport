@@ -1,0 +1,23 @@
+.Search__search {
+  font-family: "Fira Code", monospace;
+  width: 100%;
+  height: calc(2rem - 2px);
+  padding-left: 1.75rem;
+  transition:
+    color 0.3s ease-out,
+    width 0.3s ease-out,
+    box-shadow 0.3s 0.3s ease-out,
+    background 0.3s 0.6s ease-out;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--color-fg);
+}
+.Search__search:placeholder-shown {
+  color: var(--color-white50);
+}
+.Search__search:focus,
+.Search__search:active {
+  color: var(--color-bg);
+  cursor: text;
+  outline: 1px solid var(--color-yellow);
+}

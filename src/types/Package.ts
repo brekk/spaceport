@@ -1,4 +1,4 @@
-export type PackageKind = "library" | "tool" | "fun" | "plugin";
+export type PackageKind = "all" | "library" | "tool" | "fun" | "plugin";
 
 export interface RawPackage {
   name: string;

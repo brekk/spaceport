@@ -1,25 +1,22 @@
 ---
 import blem from "blem";
+import SearchField from "@components/SearchField.tsx";
+import { __search } from "@stores/search.ts";
 const bem = blem("Search");
 interface Props {
   search?: string;
   placeholder: string;
 }
-const { search = "", placeholder } = Astro.props;
+const { search = __search.get(), placeholder } = Astro.props;
 ---
 
 <div
-  className={bem("search-wrapper", [search == "" ? "waiting" : "searching"])}
+  className={bem("search-wrapper", [search === "" ? "waiting" : "searching"])}
 >
   <div className={bem("search-icon-wrapper")}>
     <slot name="icon" />
   </div>
-  <input
-    type="text"
-    className={bem("search")}
-    placeholder={placeholder}
-    id="search-field"
-  />
+  <SearchField client:load />
 </div>
 
 <style>
@@ -65,29 +62,5 @@ const { search = "", placeholder } = Astro.props;
     width: 1rem;
     top: 0.35rem;
     left: 0.45rem;
-  }
-
-  .Search__search {
-    font-family: "Fira Code", monospace;
-    width: 100%;
-    height: calc(2rem - 2px);
-    padding-left: 1.75rem;
-    transition:
-      color 0.3s ease-out,
-      width 0.3s ease-out,
-      box-shadow 0.3s 0.3s ease-out,
-      background 0.3s 0.6s ease-out;
-    background-color: transparent;
-    border: 1px solid transparent;
-    color: var(--color-fg);
-  }
-  .Search__search:placeholder-shown {
-    color: var(--color-white50);
-  }
-  .Search__search:focus,
-  .Search__search:active {
-    color: var(--color-bg);
-    cursor: text;
-    outline: 1px solid var(--color-yellow);
   }
 </style>
