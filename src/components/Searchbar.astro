@@ -1,7 +1,9 @@
 ---
 import blem from "blem";
-import Search from "@components/Search.astro";
+import Search from "@components/Search.tsx";
 import Telescope from "@icons/Telescope.astro";
+import CheckboxOfficial from "@components/CheckboxOfficial.tsx";
+import CheckboxPublished from "@components/CheckboxPublished.tsx";
 
 interface Props {
   official: boolean;
@@ -22,9 +24,7 @@ const bem = blem("Searchbar");
 
 <div className={bem("")}>
   <menu className={bem("menu")}>
-    <Search placeholder="Search packages">
-      <Telescope className={bem("search-icon")} alt="Search" slot="icon" />
-    </Search>
+    <Search placeholder="Search packages" client:load />
     <div className={bem("filters")}>
       <label htmlFor="kind" className={bem("label", ["select", "kind"])}>
         <span className={bem("label-text")}>Kind</span>
@@ -43,32 +43,8 @@ const bem = blem("Searchbar");
           }
         </select>
       </label>
-      <label
-        htmlFor="official"
-        className={bem("label", ["checkbox", "official"])}
-      >
-        <input
-          checked={official}
-          className={bem("input", ["checkbox", "official"])}
-          type="checkbox"
-          name="official"
-          id="official"
-        />
-        <span className={bem("label-text")}>Official</span>
-      </label>
-      <label
-        htmlFor="published"
-        className={bem("label", ["checkbox", "published"])}
-      >
-        <input
-          checked={published}
-          className={bem("input", ["checkbox", "published"])}
-          type="checkbox"
-          name="published"
-          id="published"
-        />
-        <span className={bem("label-text")}>Published</span>
-      </label>
+      <CheckboxOfficial client:load />
+      <CheckboxPublished client:load />
     </div>
   </menu>
 </div>

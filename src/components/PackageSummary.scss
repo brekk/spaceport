@@ -1,67 +1,4 @@
----
-import blem from "blem";
-import RepoGithub from "@icons/Github.astro";
-import RepoGitlab from "@icons/Gitlab.astro";
-import RepoIcon from "@icons/Repo.astro";
-import Tag from "@components/Tag.astro";
-/*
-import type {
-  AugmentedPackage as AugmentedPackageProps,
-  Tag as TagProps,
-} from "@/components/package/types";
-*/
-const {
-  name,
-  description,
-  published,
-  official,
-  version,
-  repo,
-  author,
-  // toggleOfficial,
-  // togglePublished,
-} = Astro.props;
-const [repoicon, Icon] = repo.includes("github")
-  ? ["github", RepoGithub]
-  : repo.includes("gitlab")
-    ? ["gitlab", RepoGitlab]
-    : ["repo", RepoIcon];
 
-const bem = blem("PackageSummary");
----
-
-<div class={bem("")}>
-  <header class={bem("header")}>
-    <strong class={bem("name")}>{name}</strong>
-    {version ? <em class={bem("version")}>v{version}</em> : null}
-  </header>
-  <div class={bem("content")}>
-    {description ? <p class={bem("description")}>{description}</p> : null}
-    <a href={repo} class={bem("link", ["repo"])}>
-      <Icon class={bem("repo", [repoicon])} />
-    </a>
-  </div>
-  <footer class={bem("footer")}>
-    <div class={bem("authorbox")}>
-      <a href={`/author/${author}`} class={bem("link", ["author"])}>
-        <img
-          src={`https://github.com/${author}.png?size=24`}
-          class={bem("avatar")}
-          alt={author}
-          width={24}
-          height={24}
-        />
-        <span class={bem("author-text")}>{author}</span>
-      </a>
-    </div>
-    <div class={bem("tagbox")}>
-      {official ? <Tag name="Official" /> : null}
-      {published ? <Tag name="Published" /> : null}
-    </div>
-  </footer>
-</div>
-
-<style>
   .PackageSummary {
     padding: 1rem;
     display: flex;
@@ -154,4 +91,4 @@ const bem = blem("PackageSummary");
     width: 10rem;
     justify-content: flex-end;
   }
-</style>
+
