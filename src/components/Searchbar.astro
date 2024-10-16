@@ -114,41 +114,6 @@ const bem = blem("Searchbar");
     /*  justify-self: flex-end;*/
     /*}*/
   }
-  input[type="checkbox"] {
-    cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: black;
-    margin: 0;
-    color: var(--color-bg);
-    border: 1px solid var(--color-white50);
-    border-radius: 100%;
-    width: 0.75rem;
-    height: 0.75rem;
-    margin-right: 0.5rem;
-    position: relative;
-  }
-  input[type="checkbox"]::before {
-    position: absolute;
-    content: "";
-    -webkit-mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
-    mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
-    -webkit-mask-size: cover;
-    mask-size: cover;
-    background-color: var(--color-bg);
-    width: 1.125rem;
-    height: 1.125rem;
-    left: -0.25rem;
-    top: -0.25rem;
-    transform: rotate(360deg) scale(0.01);
-    transition:
-      transform 0.3s ease-out,
-      background 0.3s ease-out;
-  }
-  input[type="checkbox"]:checked::before {
-    transform: rotate(0deg) scale(1);
-    background-color: var(--color-fg);
-  }
 
   .Searchbar__input--text {
     padding: 0.5rem;
@@ -159,12 +124,6 @@ const bem = blem("Searchbar");
   }
   .Searchbar__input--text:focus {
     outline: 1px solid var(--color-yellow);
-  }
-  .Searchbar__input--checkbox {
-    margin: 0;
-    padding: 0;
-    margin-top: 0.1rem;
-    margin-right: 0.5rem;
   }
 
   .Searchbar__label-text {
@@ -190,15 +149,5 @@ const bem = blem("Searchbar");
   .Searchbar__label--kind {
     width: 60%;
     min-width: 60%;
-  }
-  .Searchbar__label--official
-    input[type="checkbox"]:checked
-    + .Searchbar__label-text {
-    color: var(--color-yellow);
-  }
-  .Searchbar__label--published
-    input[type="checkbox"]:checked
-    + .Searchbar__label-text {
-    color: var(--color-purple);
   }
 </style>

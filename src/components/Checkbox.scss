@@ -1,5 +1,4 @@
 .Form {
-  
   &__input--checkbox {
     margin: 0;
     padding: 0;
@@ -17,27 +16,27 @@
     height: 0.75rem;
     margin-right: 0.5rem;
     position: relative;
-  &::before {
-    position: absolute;
-    content: "";
-    -webkit-mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
-    mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
-    -webkit-mask-size: cover;
-    mask-size: cover;
-    background-color: var(--color-bg);
-    width: 1.125rem;
-    height: 1.125rem;
-    left: -0.25rem;
-    top: -0.25rem;
-    transform: rotate(360deg) scale(0.01);
-    transition:
-      transform 0.3s ease-out,
-      background 0.3s ease-out;
-  }
-  &:checked::before {
-    transform: rotate(0deg) scale(1);
-    background-color: var(--color-fg);
-  }
+    &::before {
+      position: absolute;
+      content: "";
+      -webkit-mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
+      mask: url(../assets/icon-star.svg) no-repeat 50% 50%;
+      -webkit-mask-size: cover;
+      mask-size: cover;
+      background-color: var(--color-bg);
+      width: 1.125rem;
+      height: 1.125rem;
+      left: -0.25rem;
+      top: -0.25rem;
+      transform: rotate(360deg) scale(0.01);
+      transition:
+        transform 0.3s ease-out,
+        background 0.3s ease-out;
+    }
+    &:checked::before {
+      transform: rotate(0deg) scale(1);
+      background-color: var(--color-fg);
+    }
   }
 
   &__label-text {

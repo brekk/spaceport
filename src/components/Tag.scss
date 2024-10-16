@@ -1,0 +1,22 @@
+.tag {
+  font-family: "Antonio", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.35);
+  padding: 0.25rem 0.5rem 0.35rem;
+  background-color: var(--color-fg);
+  color: var(--color-bg);
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+  transition: background 0.3s ease-out;
+}
+.tag--published {
+  background-color: var(--color-purple);
+}
+.tag--official {
+  background-color: var(--color-yellow);
+}
+.tag:hover {
+  background-color: var(--color-pink);
+}
