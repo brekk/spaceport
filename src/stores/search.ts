@@ -1,6 +1,6 @@
 import { atom, computed } from "nanostores";
 import { filter, pipe, toLower, includes, curry } from "ramda";
-import type { PackageKind, Package } from "@localtypes/Package.ts";
+import type { RawPackage, PackageKind, Package } from "@localtypes/Package.ts";
 import PACKAGE_DATA from "@data/packages.json";
 
 export const __packages = atom<Package[]>(
@@ -38,9 +38,8 @@ export const __filteredPackages = computed(
     const match = lowerIncludes(s);
     console.log({ s, o, p, k });
     const filtered = pipe(
-      filter(
-        (pkg: Package) =>
-          (s !== "" && match(pkg.name)) || match(pkg.description),
+      filter((pkg: Package) =>
+        s !== "" ? match(pkg.name) || match(pkg.description) : true,
       ),
       filter((pkg: Package) => (k !== "all" ? pkg.kind === k : true)),
       filter((pkg: Package) =>

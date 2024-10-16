@@ -1,13 +1,13 @@
 ---
 import blem from "blem";
 import { __packages, __filteredPackages } from "@stores/search";
-import type { RawPackage, PackageKind } from "@types/Package.ts";
+import type { Package, RawPackage, PackageKind } from "@types/Package.ts";
 import Package from "@components/PackageSummary.astro";
 import Searchbar from "@components/Searchbar.astro";
 interface Props {
-  packages: RawPackage[];
+  packages: Package[];
 }
-const { packages = __filteredPackages.get() } = Astro.props;
+const { packages = [] } = Astro.props;
 const bem = blem("Packages");
 ---
 
