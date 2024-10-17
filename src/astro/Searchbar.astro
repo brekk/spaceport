@@ -4,21 +4,8 @@ import Search from "@components/Search.tsx";
 import Telescope from "@icons/Telescope.astro";
 import CheckboxOfficial from "@components/CheckboxOfficial.tsx";
 import CheckboxPublished from "@components/CheckboxPublished.tsx";
+import PackageKindSelector from "@components/PackageKind.tsx";
 
-interface Props {
-  official: boolean;
-  published: boolean;
-  search: string;
-  packageKinds: string[];
-}
-
-const PACKAGE_KINDS = ["All", "Library", "Tool", "Fun", "Plugin"];
-const {
-  official,
-  packageKinds = PACKAGE_KINDS,
-  published,
-  search = "",
-} = Astro.props;
 const bem = blem("Searchbar");
 ---
 
@@ -26,23 +13,7 @@ const bem = blem("Searchbar");
   <menu className={bem("menu")}>
     <Search placeholder="Search packages" client:load />
     <div className={bem("filters")}>
-      <label htmlFor="kind" className={bem("label", ["select", "kind"])}>
-        <span className={bem("label-text")}>Kind</span>
-        <select
-          id="kind"
-          name="kind"
-          className={bem("select", ["kind"])}
-          defaultValue={0}
-        >
-          {
-            packageKinds.map((k, i) => (
-              <option value={i} key={k + "-" + i}>
-                {k}
-              </option>
-            ))
-          }
-        </select>
-      </label>
+      <PackageKindSelector client:load />
       <CheckboxOfficial client:load />
       <CheckboxPublished client:load />
     </div>
